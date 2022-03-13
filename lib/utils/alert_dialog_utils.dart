@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hanri_fortune_wheel/providers/providers.dart';
 import 'package:hanri_fortune_wheel/resources/strings.dart';
 import 'package:hanri_fortune_wheel/widgets/text_field_widget.dart';
 
@@ -34,6 +36,7 @@ class ShowAlertDialog {
 
   static void addAlertDialog({
     required BuildContext context,
+    required WidgetRef ref
   }) {
     final _formKey = GlobalKey<FormState>();
     String value = "";
@@ -56,7 +59,7 @@ class ShowAlertDialog {
                 FocusScope.of(context).requestFocus(FocusNode());
                 if (_formKey.currentState!.validate()) {
                   print(value);
-                  //add new value
+                  ref.watch(wheelItemsProvider.notifier).addItem(value);
                   Navigator.of(context).pop();
                 }
               },
