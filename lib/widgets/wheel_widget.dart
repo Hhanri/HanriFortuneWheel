@@ -5,6 +5,7 @@ import 'package:flutter_fortune_wheel/flutter_fortune_wheel.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanri_fortune_wheel/providers/providers.dart';
 import 'package:hanri_fortune_wheel/utils/alert_dialog_utils.dart';
+import 'package:hanri_fortune_wheel/widgets/spin_button_widget.dart';
 
 class WheelWidget extends ConsumerStatefulWidget {
   const WheelWidget({Key? key}) : super(key: key);
@@ -44,17 +45,27 @@ class _WheelWidgetState extends ConsumerState<WheelWidget> {
   @override
   Widget build(BuildContext context) {
     List<String> items = ref.watch(wheelItemsProvider);
-    return FortuneWheel(
-      animateFirst: false,
-      selected: controller.stream,
-      duration: const Duration(milliseconds: 100),
-      items: [for (String item in items) FortuneItem(child: Text(item))],
-      onFling: () {
-        spinWheel(items.length);
-      },
-      onAnimationEnd: ()  {
-        ShowAlertDialog.resultAlertDialog(context: context, value: ref.watch(wheelItemsProvider)[value]);
-      },
+      return Stack(
+        alignment: Alignment.center,
+        children: [
+          FortuneWheel(
+          animateFirst: false,
+          selected: controller.stream,
+          duration: const Duration(milliseconds: 100),
+          items: [for (String item in items) FortuneItem(child: Text(item))],
+          onFling: () {
+            spinWheel(items.length);
+          },
+          onAnimationEnd: () {
+            ShowAlertDialog.resultAlertDialog(context: context, value: ref.watch(wheelItemsProvider)[value]);
+          },
+        ),
+        SpinButtonWidget(
+          onPress:() {
+            spinWheel(items.length);
+          }
+        )
+      ]
     );
   }
 }
