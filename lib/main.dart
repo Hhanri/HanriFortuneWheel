@@ -4,6 +4,7 @@ import 'package:hanri_fortune_wheel/pages/home_page.dart';
 import 'package:hanri_fortune_wheel/resources/strings.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const ProviderScope(child: MyApp()));
 }
 

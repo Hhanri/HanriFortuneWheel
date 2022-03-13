@@ -36,7 +36,6 @@ class ShowAlertDialog {
 
   static void addAlertDialog({
     required BuildContext context,
-    required WidgetRef ref
   }) {
     final _formKey = GlobalKey<FormState>();
     String value = "";
@@ -54,18 +53,21 @@ class ShowAlertDialog {
             )
           ),
           actions: [
-            TextButton(
-              onPressed: () {
-                FocusScope.of(context).requestFocus(FocusNode());
-                if (_formKey.currentState!.validate()) {
-                  print(value);
-                  ref.watch(wheelItemsProvider.notifier).addItem(value);
-                  Navigator.of(context).pop();
-                }
-              },
-              child: const Text(
-                SystemStrings.okTitle
-              )
+            Consumer(
+              builder: (BuildContext context, WidgetRef ref, Widget? child) {
+                return TextButton(
+                  onPressed: () {
+                    FocusScope.of(context).requestFocus(FocusNode());
+                    if (_formKey.currentState!.validate()) {
+                      ref.watch(wheelItemsProvider.notifier).addItem(value);
+                      Navigator.of(context).pop();
+                    }
+                  },
+                  child: const Text(
+                    SystemStrings.okTitle
+                  )
+                );
+              }
             )
           ],
         );

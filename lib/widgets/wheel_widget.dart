@@ -19,6 +19,14 @@ class _WheelWidgetState extends ConsumerState<WheelWidget> {
   int value = 0;
 
   @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance?.addPostFrameCallback((_) {
+      ref.watch(wheelItemsProvider.notifier).load();
+    });
+  }
+
+  @override
   void dispose() {
     controller.close();
     super.dispose();
@@ -40,7 +48,7 @@ class _WheelWidgetState extends ConsumerState<WheelWidget> {
       animateFirst: false,
       selected: controller.stream,
       duration: const Duration(milliseconds: 100),
-      items: [for (String it in items) FortuneItem(child: Text(it))],
+      items: [for (String item in items) FortuneItem(child: Text(item))],
       onFling: () {
         spinWheel(items.length);
       },
