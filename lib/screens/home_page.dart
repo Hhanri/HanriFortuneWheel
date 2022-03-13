@@ -3,6 +3,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_fortune_wheel/flutter_fortune_wheel.dart';
+import 'package:hanri_fortune_wheel/utils/alert_dialog_utils.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -55,13 +56,8 @@ class _HomeScreenState extends State<HomeScreen> {
               onFling: () {
                 spinWheel();
               },
-              onAnimationStart: () {
-                print("go");
-              },
               onAnimationEnd: ()  {
-                print("end");
-                print(value);
-                print(items[value]);
+                ShowAlertDialog.showMyDialog(context: context, value: items[value]);
               },
             ),
           ),

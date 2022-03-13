@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hanri_fortune_wheel/resources/strings.dart';
 import 'package:hanri_fortune_wheel/screens/home_page.dart';
 
 void main() {
@@ -11,7 +12,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: SystemStrings.appTitle,
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
         brightness: Brightness.dark
