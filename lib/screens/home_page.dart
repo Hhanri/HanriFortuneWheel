@@ -13,6 +13,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   StreamController<int> controller = StreamController<int>();
+  int value = 0;
 
   @override
   void dispose() {
@@ -33,9 +34,11 @@ class _HomeScreenState extends State<HomeScreen> {
     ];
 
     void spinWheel() {
+      final int newValue = Random().nextInt(items.length -1);
+      value = newValue;
       setState(() {
         controller.add(
-          Random().nextInt(items.length -1),
+          newValue
         );
       });
     }
@@ -54,11 +57,11 @@ class _HomeScreenState extends State<HomeScreen> {
               },
               onAnimationStart: () {
                 print("go");
-                dispose();
               },
-              onAnimationEnd: () async {
+              onAnimationEnd: ()  {
                 print("end");
-                print(controller.stream.toString());
+                print(value);
+                print(items[value]);
               },
             ),
           ),
