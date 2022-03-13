@@ -57,10 +57,15 @@ class _HomeScreenState extends State<HomeScreen> {
                 spinWheel();
               },
               onAnimationEnd: ()  {
-                ShowAlertDialog.showMyDialog(context: context, value: items[value]);
+                ShowAlertDialog.resultAlertDialog(context: context, value: items[value]);
               },
             ),
           ),
+          ElevatedButton(
+            onPressed: () {
+              ShowAlertDialog.addAlertDialog(context: context);
+            },
+            child: Text('ADD'))
         ],
       ),
     );
