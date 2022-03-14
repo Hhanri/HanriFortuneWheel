@@ -10,7 +10,7 @@ class SpinButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CircleAvatar(
-      backgroundColor: Colors.blue,
+      backgroundColor: Colors.lightBlue,
       child: IconButton(
         padding: EdgeInsets.zero,
         onPressed: onPress,

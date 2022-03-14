@@ -45,10 +45,10 @@ class _WheelWidgetState extends ConsumerState<WheelWidget> {
   @override
   Widget build(BuildContext context) {
     List<String> items = ref.watch(wheelItemsProvider);
-      return Stack(
-        alignment: Alignment.center,
-        children: [
-          FortuneWheel(
+    return Stack(
+      alignment: Alignment.center,
+      children: [
+        FortuneWheel(
           animateFirst: false,
           selected: controller.stream,
           duration: const Duration(milliseconds: 100),
