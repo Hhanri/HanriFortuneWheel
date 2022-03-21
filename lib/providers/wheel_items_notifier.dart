@@ -13,7 +13,8 @@ class WheelItemsNotifier extends StateNotifier<List<String>> {
   }
 
   void deleteItem(int index) {
-    state = state.where((element) => state.indexOf(element) != index).toList();
+    state.removeAt(index);
+    state = [...state];
     save();
   }
 
